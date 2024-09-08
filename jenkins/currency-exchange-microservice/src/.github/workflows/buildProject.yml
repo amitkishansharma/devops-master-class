@@ -1,0 +1,19 @@
+name: build project end to end.
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions\checkout@v4
+      - name: get Java
+        uses: actions\setup-java@v4
+        with:
+          java-version: '17'
+          distribution: "temurin"
+          architecture: x64
+      - run: mvn --batch-mode --update-snapshots verify  
+         
